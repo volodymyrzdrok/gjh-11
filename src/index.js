@@ -10,7 +10,6 @@ import {
   scrollSmoth,
 } from './js/utils';
 import { lightbox } from './js/modal';
-
 const apiService = new ApiService();
 
 function searchImagesSubmit(e) {
@@ -27,10 +26,16 @@ function searchImagesSubmit(e) {
   e.target.reset();
 }
 
-function fetchImagesFunc() {
+async function fetchImagesFunc() {
   hideELements(btnLoadMore, false);
   hideELements(spinnerEl, false);
-  apiService.fetchImages().then(onResolve).catch(onReject);
+
+  try {
+    const result = await apiService.fetchImages();
+    onResolve(result);
+  } catch (error) {
+    onReject(error);
+  }
 }
 
 function onResolve(resp) {
