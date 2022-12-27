@@ -2,7 +2,7 @@
 .DS_Store
 .vscode/
 .idea/
-
+example/
 # Logs
 logs
 *.log
